@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Televisions | Appliance Energy Consumption Website</title>
+  <meta name="description" content="Bigger TVs, bigger bills: how screen size and star ratings affect what a TV costs to run in Australia, plus a TV energy calculator.">
+  <link rel="icon" href="assets/img/power-logo.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/data/tv-models.js" defer></script>
+  <script src="assets/js/calculator.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Main">
+      <a class="logo" href="index.html"><img src="assets/img/power-logo.png" alt="Appliance Energy – Home" width="48" height="48"></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="televisions.html" class="active" aria-current="page">Televisions</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <h1>Bigger TVs, bigger bills</h1>
+        <p class="lead">The typical TV on the Australian register costs about <strong>$129 a year</strong> to run. That figure is rising because screens keep getting bigger. We looked at all 5,340 TV models on the Australian Energy Rating register to answer three questions: does size matter, are TVs getting bigger, and what can you do about it?</p>
+        <p class="data-note">Costs assume 33 c/kWh and 10 hours of use a day, the basis of the energy label.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="size-title">
+      <div class="container">
+        <h2 id="size-title">Bigger screens use more electricity</h2>
+        <p class="prose">Screen size is the biggest single driver of a TV's energy use. Across 5,340 models on the Australian register, the median TV of 32 inches or less uses 105 kWh a year. Above 75 inches, the median is 806 kWh, almost eight times as much.</p>
+        <figure class="chart">
+          <img src="assets/img/chart-a-size.png" alt="Bar chart of median yearly energy use by screen size: 105 kWh for 32 inches and under, 205 for 33 to 43, 320 for 44 to 55, 452 for 56 to 65, 576 for 66 to 75 and 806 kWh for over 75 inches.">
+          <figcaption>Median energy use (kWh per year) by screen size band. Source: Energy Rating register, 3 Oct 2026.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="trend-title">
+      <div class="container">
+        <h2 id="trend-title">And new TVs keep getting bigger</h2>
+        <p class="prose">In 2024 the typical newly registered TV jumped from 55 to 65 inches. Median energy use rose 14%, from 354 kWh in 2021 to 405 kWh in 2026. Star ratings improved a little over the same period, but not enough to cancel out the bigger screens.</p>
+        <figure class="chart">
+          <img src="assets/img/chart-b-trend.png" alt="Line chart from 2021 to 2026: median screen size steps up from 55 to 65 inches in 2024, and median yearly energy use rises from 354 to 405 kWh.">
+          <figcaption>Median screen size and energy use of newly registered models by year. Years are estimated from label expiry dates; 2026 is a partial year.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cost-title">
+      <div class="container">
+        <h2 id="cost-title">The star label is how you save</h2>
+        <p class="prose">You don't have to give up a big screen. Two 65-inch TVs can cost very different amounts to run. A 2-star model costs about $296 a year, and a 6-star model about $119. That's a saving of about $177 a year, or roughly $1,770 over a ten-year life.</p>
+        <figure class="chart">
+          <img src="assets/img/chart-c-cost.png" alt="Bar chart of yearly running cost for 65-inch TVs by star rating: about $296 at 2 stars, $185 at 4 stars, $119 at 6 stars and $84 at 7 stars.">
+          <figcaption>Median yearly running cost of 65-inch TVs by star rating, at 33 c/kWh and 10 hours a day.</figcaption>
+        </figure>
+        <p class="prose">Use the calculator below to check a TV you own, or one you are thinking of buying.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="calc-title">
+      <div class="container">
+        <h2 id="calc-title">TV energy calculator</h2>
+        <p class="prose">Pick a TV from the Australian register, or enter its power in watts. Then tell us how long it is on each day and what you pay for electricity. Results update as you type.</p>
+
+        <div class="calc-layout">
+          <form id="calc-form" class="calc-form" novalidate autocomplete="off">
+            <fieldset id="model-picker">
+              <legend>1. Choose your TV</legend>
+              <div class="field">
+                <label for="tech">Screen technology</label>
+                <select id="tech" name="tech"></select>
+              </div>
+              <div class="field">
+                <label for="size">Screen size</label>
+                <select id="size" name="size" disabled></select>
+              </div>
+              <div class="field">
+                <label for="brand">Brand</label>
+                <select id="brand" name="brand" disabled></select>
+              </div>
+              <div class="field">
+                <label for="model">Model</label>
+                <select id="model" name="model" disabled aria-describedby="model-error"></select>
+                <p class="error" id="model-error"></p>
+              </div>
+            </fieldset>
+
+            <div class="field field-check">
+              <input type="checkbox" id="manual" name="manual">
+              <label for="manual">Enter wattage manually</label>
+            </div>
+
+            <div class="field" id="watts-field" hidden>
+              <label for="watts">Power usage (watts)</label>
+              <input type="number" id="watts" name="watts" min="1" max="1000" step="any" inputmode="decimal" aria-describedby="watts-help watts-error">
+              <p class="help" id="watts-help">Between 1 and 1000 W. Check the label or the manual.</p>
+              <p class="error" id="watts-error"></p>
+            </div>
+
+            <fieldset>
+              <legend>2. Your usage</legend>
+              <div class="field">
+                <label for="hours">Hours of use per day</label>
+                <input type="number" id="hours" name="hours" value="5" min="0" max="24" step="any" inputmode="decimal" aria-describedby="hours-help hours-error">
+                <p class="help" id="hours-help">Between 0 and 24.</p>
+                <p class="error" id="hours-error"></p>
+              </div>
+              <div class="field">
+                <label for="price">Electricity price (cents per kWh)</label>
+                <input type="number" id="price" name="price" value="33" min="1" max="200" step="any" inputmode="decimal" aria-describedby="price-help price-error">
+                <p class="help" id="price-help">Find this on your power bill. 33 c/kWh is a typical Australian rate.</p>
+                <p class="error" id="price-error"></p>
+              </div>
+            </fieldset>
+
+            <button type="submit" class="button">Calculate</button>
+          </form>
+
+          <section class="results" aria-labelledby="results-title">
+            <h3 id="results-title">Your estimate</h3>
+            <div aria-live="polite">
+              <p class="results-message" id="results-message">Choose a TV model, or tick “Enter wattage manually”, to see your estimate.</p>
+              <p class="results-basis" id="results-basis" hidden></p>
+              <table class="results-table" id="results-table" hidden>
+                <thead>
+                  <tr><th scope="col">Period</th><th scope="col">Energy</th><th scope="col">Cost</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Per day</th><td id="kwh-day"></td><td id="cost-day"></td></tr>
+                  <tr><th scope="row">Per month</th><td id="kwh-month"></td><td id="cost-month"></td></tr>
+                  <tr><th scope="row">Per year</th><td id="kwh-year"></td><td id="cost-year"></td></tr>
+                </tbody>
+              </table>
+              <p class="label-note" id="label-note" hidden></p>
+            </div>
+          </section>
+        </div>
+
+        <p class="data-note">Model data: Australian Energy Rating register (extract dated 3 Oct 2026).</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="story-title">
+      <div class="container">
+        <h2 id="story-title">How this page was planned</h2>
+        <p class="prose">This storyboard shows the planned journey through this page, sketched before the charts were made in KNIME.</p>
+        <details class="plan">
+          <summary>Show the storyboard</summary>
+        <ol class="storyboard">
+          <li class="frame">
+            <span class="chip">Frame 1: Hook</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| [logo]   Home  TVs  About      |
+|--------------------------------|
+|  BIGGER TVs, BIGGER BILLS      |
+|  The typical TV costs          |
+|  ~$129 a year to run.          |
+|  Is yours costing more?        |
+|          [ Read on v ]         |
++--------------------------------+</pre>
+            <p>A headline and one striking number pull the visitor in. A single scroll cue leads into the story.</p>
+          </li>
+          <li class="frame">
+            <span class="chip">Frame 2: Does size matter?</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| Bigger screens use more power  |
+|  kWh                    ####   |
+|                  ####   ####   |
+|          ####   ####   ####   |
+|  ####    ####   ####   ####   |
+|  &lt;=32    44-55  56-65  75+    |
+|  "75+ inches = 8x the energy"  |
++--------------------------------+</pre>
+            <p>Chart A shows the main point: energy use rises steadily with screen size. Short text explains what kWh means.</p>
+            <p><a href="#size-title">See the final version &uarr;</a></p>
+          </li>
+          <li class="frame">
+            <span class="chip">Frame 3: Are TVs getting bigger?</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| New TVs keep getting bigger    |
+|  size/kWh            ._____.   |
+|               ______/         |
+|  ____________/   ^ 2024:       |
+|                 55" -> 65"     |
+|  2021  2022  2023  2024  2026  |
++--------------------------------+</pre>
+            <p>Chart B shows the trend, so the problem is getting worse. Visitors see that their next TV will probably be bigger than their last one.</p>
+            <p><a href="#trend-title">See the final version &uarr;</a></p>
+          </li>
+          <li class="frame">
+            <span class="chip">Frame 4: What will it cost me?</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| Same 65" TV, very different    |
+| bills                          |
+|  2 stars ######### $296/yr     |
+|  4 stars ######    $185/yr     |
+|  6 stars ####      $119/yr     |
+|  "Save ~$177 a year"           |
++--------------------------------+</pre>
+            <p>Chart C turns energy use into dollars and shows the star label is the lever the visitor controls.</p>
+            <p><a href="#cost-title">See the final version &uarr;</a></p>
+          </li>
+          <li class="frame">
+            <span class="chip">Frame 5: Take action</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| Check your own TV              |
+|  [Screen tech v] [Size v]      |
+|  [Brand v]       [Model v]     |
+|  Hours/day [5]  Price [33c]    |
+|  &gt;&gt; Your TV: $___ per year    |
++--------------------------------+</pre>
+            <p>The existing calculator lets visitors apply the story to their own TV or a model they are considering.</p>
+          </li>
+          <li class="frame">
+            <span class="chip">Frame 6: About the data</span>
+<pre class="sketch" aria-hidden="true">+--------------------------------+
+| About the data                 |
+|  Source: Energy Rating         |
+|  register, 3 Oct 2026          |
+|  Assumes 33c/kWh, 10 h/day     |
+|  Years estimated from label    |
+|  expiry dates                  |
++--------------------------------+</pre>
+            <p>A short note on the source, assumptions and limitations builds trust without interrupting the story.</p>
+          </li>
+        </ol>
+        </details>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> Ngo Gia Hy – Student ID 106217563 · This website was developed with GenAI support.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="100%" height="100%">
+  <!-- Bầu trời -->
+  <rect width="1000" height="610" fill="#88C4EA" />
+
+  <!-- Mặt trời -->
+  <circle cx="808" cy="202" r="82" fill="#FFF200" />
+
+  <!-- Bãi cỏ -->
+  <rect y="610" width="1000" height="390" fill="#008000" />
+
+  <!-- Thân cây -->
+  <rect x="160" y="525" width="41" height="188" fill="#AA5B2D" />
+
+  <!-- Tán cây hình trái tim bo tròn -->
+  <path d="M 180 530 
+           C 130 500, 70 470, 79 415 
+           C 87 365, 145 365, 180 405 
+           C 215 365, 273 365, 281 415 
+           C 290 470, 230 500, 180 530 Z" 
+        fill="#268B35" />
+
+  <!-- Mái nhà -->
+  <polygon points="504,204 302,408 706,408" fill="#C87A34" />
+
+  <!-- Thân nhà -->
+  <rect x="302" y="408" width="405" height="304" fill="#964B13" />
+
+  <!-- Cửa sổ trái -->
+  <rect x="342" y="448" width="81" height="81" fill="#AED6EB" />
+
+  <!-- Cửa sổ phải -->
+  <rect x="585" y="448" width="81" height="81" fill="#AED6EB" />
+
+  <!-- Cửa chính -->
+  <rect x="464" y="549" width="81" height="163" fill="#A44D29" />
+
+  <!-- Tay nắm cửa -->
+  <circle cx="524" cy="630" r="11" fill="#000000" />
+
+  <!-- Con đường uốn lượn trước nhà -->
+  <path d="M 540 710 Q 420 720 340 755 Q 260 790 285 845 Q 315 900 460 975 Q 490 990 510 1000" 
+        fill="none" stroke="#FFAC00" stroke-width="13" stroke-linecap="round" />
+  <path d="M 465 712 Q 380 735 320 770 Q 240 820 315 885 Q 380 940 560 1000" 
+        fill="none" stroke="#FFAC00" stroke-width="13" stroke-linecap="round" />
+
+  <!-- Dòng chữ "House" -->
+  <text x="768" y="590" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="normal" fill="#000000">House</text>
+</svg>

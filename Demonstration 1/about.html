@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | Appliance Energy Consumption Website</title>
+  <meta name="description" content="About the Appliance Energy Consumption Website project, its data source and its author.">
+  <link rel="icon" href="assets/img/power-logo.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="site-nav container" aria-label="Main">
+      <a class="logo" href="index.html"><img src="assets/img/power-logo.png" alt="Appliance Energy – Home" width="48" height="48"></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="televisions.html">Televisions</a></li>
+        <li><a href="about.html" class="active" aria-current="page">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container prose">
+        <h1>About this project</h1>
+        <p class="lead">The Appliance Energy Consumption Website is a small project for COS30045 Data Visualisation at Swinburne University of Technology. It explores how much electricity household appliances use in Australia, starting with televisions.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="data-title">
+      <div class="container prose">
+        <h2 id="data-title">Data source</h2>
+        <p>The data story and the calculator use the Australian Energy Rating product register for televisions (extract dated 3 October 2026, 5,340 registered models). Each model's screen size, screen technology, star rating and labelled yearly energy use are taken from that register.</p>
+        <p>Running costs assume 33 cents per kWh and 10 hours of use a day. Registration years are estimated from each label's expiry date. The data describes TV models, not households, so it contains no personal information.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="author-title">
+      <div class="container">
+        <h2 id="author-title">Author</h2>
+        <div class="author-card">
+          <p><strong>Ngo Gia Hy</strong></p>
+          <p>Student ID 106217563</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> Ngo Gia Hy – Student ID 106217563 · This website was developed with GenAI support.</p>
+    </div>
+  </footer>
+</body>
+</html>
