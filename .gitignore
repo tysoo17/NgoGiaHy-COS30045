@@ -1,1 +1,6 @@
 *.exe
+
+# Claude Code skills and plugin working folders
+.claude/
+.impeccable/
+.superpowers/
