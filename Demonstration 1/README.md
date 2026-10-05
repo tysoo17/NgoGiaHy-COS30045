@@ -190,13 +190,10 @@ in the browser: nothing the visitor enters is stored or sent anywhere.
 
 I used generative AI (Claude Code, by Anthropic) in this project for:
 - profiling the dataset and suggesting possible insights to analyse;
-- writing step-by-step instructions for building the KNIME workflow (I built and ran the workflow myself);
+- recommend suitable KNIME workflows;
 - drafting the storyboard, the audience analysis and the data story text;
 - writing and updating the website's HTML, CSS and JavaScript, and the data conversion script;
 - drafting this README.
-
-I chose the story, audience and insights, checked the figures against my own KNIME results, and reviewed and
-edited all AI-generated content. I am responsible for the final work.
 
 ## Author
 
