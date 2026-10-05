@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Televisions | Appliance Energy Consumption Website</title>
+  <title>Televisions | Electrofy</title>
   <meta name="description" content="Bigger TVs, bigger bills: how screen size and star ratings affect what a TV costs to run in Australia, plus a TV energy calculator.">
   <link rel="icon" href="assets/img/power-logo.png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script src="assets/js/main.js" defer></script>
   <script src="assets/data/tv-models.js" defer></script>
   <script src="assets/js/calculator.js" defer></script>
+  <script src="assets/js/cost-chart.js" defer></script>
+  <script src="assets/js/trend-chart.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
   <header class="site-header">
     <nav class="site-nav container" aria-label="Main">
-      <a class="logo" href="index.html"><img src="assets/img/power-logo.png" alt="Appliance Energy – Home" width="48" height="48"></a>
+      <a class="logo" href="index.html"><img src="assets/img/power-logo.png" alt="" width="48" height="48"><span class="logo-name">Electrofy</span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="televisions.html" class="active" aria-current="page">Televisions</a></li>
@@ -28,9 +30,33 @@
   <main id="main">
     <section class="hero">
       <div class="container">
-        <h1>Bigger TVs, bigger bills</h1>
-        <p class="lead">The typical TV on the Australian register costs about <strong>$129 a year</strong> to run. That figure is rising because screens keep getting bigger. We looked at all 5,340 TV models on the Australian Energy Rating register to answer three questions: does size matter, are TVs getting bigger, and what can you do about it?</p>
-        <p class="data-note">Costs assume 33 c/kWh and 10 hours of use a day, the basis of the energy label.</p>
+        <p class="site-name">Televisions</p>
+        <h1>TV size drives energy use. The star label saves you money.</h1>
+        <p class="lead">The typical TV on the Australian register costs about <strong>$129 a year</strong> to run. That figure is rising because screens keep getting bigger. We looked at all 5,340 TV models on the Australian Energy Rating register to answer three questions.</p>
+        <ul class="card-grid question-grid">
+          <li>
+            <a class="card card-link" href="#size-title">
+              <span class="chip">Screen size</span>
+              <p class="card-title">Does size matter?</p>
+              <p>A TV over 75 inches uses almost eight times the energy of one 32 inches or under.</p>
+            </a>
+          </li>
+          <li>
+            <a class="card card-link" href="#trend-title">
+              <span class="chip">Trend</span>
+              <p class="card-title">Are TVs getting bigger?</p>
+              <p>The typical new TV jumped from 55 to 65 inches in 2024.</p>
+            </a>
+          </li>
+          <li>
+            <a class="card card-link" href="#cost-title">
+              <span class="chip">Star rating</span>
+              <p class="card-title">What can you do?</p>
+              <p>A 6-star 65-inch TV costs about $178 a year less to run than a 2-star one.</p>
+            </a>
+          </li>
+        </ul>
+        <p class="data-note">Costs assume 0.33 AUD/kWh and 10 hours of use a day, the basis of the energy label.</p>
       </div>
     </section>
 
@@ -39,9 +65,26 @@
         <h2 id="size-title">Bigger screens use more electricity</h2>
         <p class="prose">Screen size is the biggest single driver of a TV's energy use. Across 5,340 models on the Australian register, the median TV of 32 inches or less uses 105 kWh a year. Above 75 inches, the median is 806 kWh, almost eight times as much.</p>
         <figure class="chart">
-          <img src="assets/img/chart-a-size.png" alt="Bar chart of median yearly energy use by screen size: 105 kWh for 32 inches and under, 205 for 33 to 43, 320 for 44 to 55, 452 for 56 to 65, 576 for 66 to 75 and 806 kWh for over 75 inches.">
-          <figcaption>Median energy use (kWh per year) by screen size band. Source: Energy Rating register, 3 Oct 2026.</figcaption>
+          <!-- Medians over all 5,340 register rows, as in the original chart. --share = value / 806. -->
+          <table class="bar-table" aria-describedby="size-caption">
+            <thead>
+              <tr><th scope="col">Screen size</th><th scope="col">Median energy use</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">32" and under</th><td><div class="bar-track"><span class="bar" style="--share: 0.130"></span><span class="bar-value">105 kWh</span></div></td></tr>
+              <tr><th scope="row">33–43"</th><td><div class="bar-track"><span class="bar" style="--share: 0.254"></span><span class="bar-value">205 kWh</span></div></td></tr>
+              <tr><th scope="row">44–55"</th><td><div class="bar-track"><span class="bar" style="--share: 0.397"></span><span class="bar-value">320 kWh</span></div></td></tr>
+              <tr><th scope="row">56–65"</th><td><div class="bar-track"><span class="bar" style="--share: 0.561"></span><span class="bar-value">452 kWh</span></div></td></tr>
+              <tr><th scope="row">66–75"</th><td><div class="bar-track"><span class="bar" style="--share: 0.715"></span><span class="bar-value">576 kWh</span></div></td></tr>
+              <tr><th scope="row">Over 75"</th><td><div class="bar-track"><span class="bar" style="--share: 1"></span><span class="bar-value">806 kWh</span></div></td></tr>
+            </tbody>
+          </table>
+          <figcaption id="size-caption">Median energy use (kWh per year) by screen size band. Source: Energy Rating register, 3 Oct 2026.</figcaption>
         </figure>
+        <details class="chart-original">
+          <summary>See the original visual</summary>
+          <img src="assets/img/chart-a-size.png" alt="Bar chart of median yearly energy use by screen size: 105 kWh for 32 inches and under, 205 for 33 to 43, 320 for 44 to 55, 452 for 56 to 65, 576 for 66 to 75 and 806 kWh for over 75 inches.">
+        </details>
       </div>
     </section>
 
@@ -50,20 +93,52 @@
         <h2 id="trend-title">And new TVs keep getting bigger</h2>
         <p class="prose">In 2024 the typical newly registered TV jumped from 55 to 65 inches. Median energy use rose 14%, from 354 kWh in 2021 to 405 kWh in 2026. Star ratings improved a little over the same period, but not enough to cancel out the bigger screens.</p>
         <figure class="chart">
-          <img src="assets/img/chart-b-trend.png" alt="Line chart from 2021 to 2026: median screen size steps up from 55 to 65 inches in 2024, and median yearly energy use rises from 354 to 405 kWh.">
-          <figcaption>Median screen size and energy use of newly registered models by year. Years are estimated from label expiry dates; 2026 is a partial year.</figcaption>
+          <div class="trend-chart" data-measure="size"></div>
+          <div class="chart-tip" role="tooltip" hidden></div>
+          <figcaption>Median screen size of newly registered models by year.</figcaption>
         </figure>
+        <figure class="chart">
+          <div class="trend-chart" data-measure="kwh"></div>
+          <div class="chart-tip" role="tooltip" hidden></div>
+          <figcaption>Median energy use of newly registered models by year.</figcaption>
+        </figure>
+        <p class="data-note">Years are estimated from label expiry dates; 2026 is a partial year (dashed).</p>
+        <details class="chart-original">
+          <summary>See the original visual</summary>
+          <img src="assets/img/chart-b-trend.png" alt="Line chart from 2021 to 2026: median screen size steps up from 55 to 65 inches in 2024, and median yearly energy use rises from 354 to 405 kWh.">
+        </details>
       </div>
     </section>
 
     <section class="section" aria-labelledby="cost-title">
       <div class="container">
         <h2 id="cost-title">The star label is how you save</h2>
-        <p class="prose">You don't have to give up a big screen. Two 65-inch TVs can cost very different amounts to run. A 2-star model costs about $296 a year, and a 6-star model about $119. That's a saving of about $177 a year, or roughly $1,770 over a ten-year life.</p>
-        <figure class="chart">
-          <img src="assets/img/chart-c-cost.png" alt="Bar chart of yearly running cost for 65-inch TVs by star rating: about $296 at 2 stars, $185 at 4 stars, $119 at 6 stars and $84 at 7 stars.">
-          <figcaption>Median yearly running cost of 65-inch TVs by star rating, at 33 c/kWh and 10 hours a day.</figcaption>
+        <p class="prose">You don't have to give up a big screen. Two 65-inch TVs can cost very different amounts to run. A 2-star model costs about $296 a year, and a 6-star model about $118. That's a saving of about $178 a year, or roughly $1,780 over a ten-year life. Try other screen sizes and your own electricity price in the chart below.</p>
+        <figure class="chart cost-chart">
+          <div class="chart-controls">
+            <div class="field">
+              <label for="cost-size">Screen size</label>
+              <select id="cost-size"></select>
+            </div>
+            <div class="field">
+              <label for="cost-price">Electricity price (cents per kWh)</label>
+              <input type="number" id="cost-price" value="33" min="1" max="200" step="any" inputmode="decimal" aria-describedby="cost-price-error">
+              <p class="error" id="cost-price-error"></p>
+            </div>
+          </div>
+          <table class="bar-table" aria-describedby="cost-caption">
+            <thead>
+              <tr><th scope="col">Star rating</th><th scope="col">Median yearly running cost</th></tr>
+            </thead>
+            <tbody id="cost-rows"></tbody>
+          </table>
+          <div class="chart-tip" id="cost-tip" role="tooltip" hidden></div>
+          <figcaption id="cost-caption">Median yearly running cost by star rating, at 10 hours a day. Star ratings with fewer than 3 models are left out. Source: Energy Rating register, 3 Oct 2026.</figcaption>
         </figure>
+        <details class="chart-original">
+          <summary>See the original visual</summary>
+          <img src="assets/img/chart-c-cost.png" alt="Bar chart of yearly running cost for 65-inch TVs by star rating: about $296 at 2 stars, $185 at 4 stars, $119 at 6 stars and $84 at 7 stars.">
+        </details>
         <p class="prose">Use the calculator below to check a TV you own, or one you are thinking of buying.</p>
       </div>
     </section>
@@ -119,7 +194,7 @@
               <div class="field">
                 <label for="price">Electricity price (cents per kWh)</label>
                 <input type="number" id="price" name="price" value="33" min="1" max="200" step="any" inputmode="decimal" aria-describedby="price-help price-error">
-                <p class="help" id="price-help">Find this on your power bill. 33 c/kWh is a typical Australian rate.</p>
+                <p class="help" id="price-help">Find this on your power bill. 0.33 AUD/kWh is a typical Australian rate.</p>
                 <p class="error" id="price-error"></p>
               </div>
             </fieldset>
@@ -150,100 +225,12 @@
         <p class="data-note">Model data: Australian Energy Rating register (extract dated 3 Oct 2026).</p>
       </div>
     </section>
-
-    <section class="section" aria-labelledby="story-title">
-      <div class="container">
-        <h2 id="story-title">How this page was planned</h2>
-        <p class="prose">This storyboard shows the planned journey through this page, sketched before the charts were made in KNIME.</p>
-        <details class="plan">
-          <summary>Show the storyboard</summary>
-        <ol class="storyboard">
-          <li class="frame">
-            <span class="chip">Frame 1: Hook</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| [logo]   Home  TVs  About      |
-|--------------------------------|
-|  BIGGER TVs, BIGGER BILLS      |
-|  The typical TV costs          |
-|  ~$129 a year to run.          |
-|  Is yours costing more?        |
-|          [ Read on v ]         |
-+--------------------------------+</pre>
-            <p>A headline and one striking number pull the visitor in. A single scroll cue leads into the story.</p>
-          </li>
-          <li class="frame">
-            <span class="chip">Frame 2: Does size matter?</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| Bigger screens use more power  |
-|  kWh                    ####   |
-|                  ####   ####   |
-|          ####   ####   ####   |
-|  ####    ####   ####   ####   |
-|  &lt;=32    44-55  56-65  75+    |
-|  "75+ inches = 8x the energy"  |
-+--------------------------------+</pre>
-            <p>Chart A shows the main point: energy use rises steadily with screen size. Short text explains what kWh means.</p>
-            <p><a href="#size-title">See the final version &uarr;</a></p>
-          </li>
-          <li class="frame">
-            <span class="chip">Frame 3: Are TVs getting bigger?</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| New TVs keep getting bigger    |
-|  size/kWh            ._____.   |
-|               ______/         |
-|  ____________/   ^ 2024:       |
-|                 55" -> 65"     |
-|  2021  2022  2023  2024  2026  |
-+--------------------------------+</pre>
-            <p>Chart B shows the trend, so the problem is getting worse. Visitors see that their next TV will probably be bigger than their last one.</p>
-            <p><a href="#trend-title">See the final version &uarr;</a></p>
-          </li>
-          <li class="frame">
-            <span class="chip">Frame 4: What will it cost me?</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| Same 65" TV, very different    |
-| bills                          |
-|  2 stars ######### $296/yr     |
-|  4 stars ######    $185/yr     |
-|  6 stars ####      $119/yr     |
-|  "Save ~$177 a year"           |
-+--------------------------------+</pre>
-            <p>Chart C turns energy use into dollars and shows the star label is the lever the visitor controls.</p>
-            <p><a href="#cost-title">See the final version &uarr;</a></p>
-          </li>
-          <li class="frame">
-            <span class="chip">Frame 5: Take action</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| Check your own TV              |
-|  [Screen tech v] [Size v]      |
-|  [Brand v]       [Model v]     |
-|  Hours/day [5]  Price [33c]    |
-|  &gt;&gt; Your TV: $___ per year    |
-+--------------------------------+</pre>
-            <p>The existing calculator lets visitors apply the story to their own TV or a model they are considering.</p>
-          </li>
-          <li class="frame">
-            <span class="chip">Frame 6: About the data</span>
-<pre class="sketch" aria-hidden="true">+--------------------------------+
-| About the data                 |
-|  Source: Energy Rating         |
-|  register, 3 Oct 2026          |
-|  Assumes 33c/kWh, 10 h/day     |
-|  Years estimated from label    |
-|  expiry dates                  |
-+--------------------------------+</pre>
-            <p>A short note on the source, assumptions and limitations builds trust without interrupting the story.</p>
-          </li>
-        </ol>
-        </details>
-      </div>
-    </section>
-
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year">2026</span> Ngo Gia Hy – Student ID 106217563 · This website was developed with GenAI support.</p>
+      <p>&copy; <span id="year">2026</span> Ngo Gia Hy – Student ID 106217563</p>
+      <p>This website is designed and built with GenAI support</p>
     </div>
   </footer>
 </body>

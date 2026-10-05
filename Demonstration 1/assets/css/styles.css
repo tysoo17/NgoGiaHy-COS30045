@@ -1,4 +1,4 @@
-/* Appliance Energy Consumption Website — shared styles.
+/* Electrofy — shared styles.
    Colours are taken from the logo (assets/img/power-logo.png). */
 
 :root {
@@ -79,8 +79,9 @@ a:hover { color: var(--ink); }
   padding-bottom: 12px;
 }
 
-.logo { display: inline-block; border-radius: 50%; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo img { width: 48px; height: 48px; transition: transform 200ms var(--ease); }
+.logo-name { font-size: 1.5rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
 .logo:hover img { transform: translateY(-2px); }
 
 .nav-links { display: flex; flex-wrap: wrap; gap: 0 24px; margin: 0; padding: 0; list-style: none; }
@@ -145,6 +146,22 @@ a:hover { color: var(--ink); }
 .card { padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .card p:last-child { margin-bottom: 0; }
 
+.question-grid { margin-top: 32px; }
+.card-link {
+  display: block;
+  height: 100%;
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 150ms var(--ease), transform 150ms var(--ease);
+}
+.card-link:hover { border-color: var(--amber); color: var(--ink); transform: translateY(-2px); }
+.card-title { margin: 0 0 0.5em; font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
+.card-title::after { content: " ↓" / ""; color: var(--brown); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 .chip {
   display: inline-block;
   margin-bottom: 12px;
@@ -156,6 +173,9 @@ a:hover { color: var(--ink); }
   font-weight: 600;
 }
 
+.stat { margin: 0 0 8px; font-size: 2.5rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.stat small { font-size: 1rem; font-weight: 600; color: var(--brown); }
+
 .data-note { margin-top: 24px; color: var(--brown); font-size: 0.875rem; }
 
 .author-card { display: inline-block; padding: 16px 24px; background: var(--cream); color: var(--ink); border-radius: var(--radius); }
@@ -163,14 +183,74 @@ a:hover { color: var(--ink); }
 
 /* ---------- Story charts ---------- */
 
-.chart { max-width: 800px; margin: 24px 0 0; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.chart { position: relative; max-width: 800px; margin: 24px 0 0; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
 .chart img { width: 100%; background: var(--bg); }
 .chart figcaption { margin-top: 8px; color: var(--brown); font-size: 0.875rem; }
 
+.chart-controls { display: flex; flex-wrap: wrap; gap: 0 16px; }
+.chart-controls .field { flex: 1 1 200px; max-width: 280px; }
+
+.bar-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.bar-table th,
+.bar-table td { padding: 4px 0; text-align: left; }
+.bar-table thead th { padding-bottom: 8px; color: var(--brown); font-size: 0.875rem; }
+.bar-table tbody th { width: 5.5rem; padding-right: 12px; font-weight: 600; white-space: nowrap; }
+.bar-table tbody tr:focus-visible { outline-offset: 0; }
+
+.bar-track { display: flex; align-items: center; gap: 8px; }
+.bar {
+  flex: none;
+  width: calc((100% - 5rem) * var(--share));
+  min-width: 2px;
+  height: 20px;
+  border-radius: 0 4px 4px 0;
+  background: var(--amber);
+  transform-origin: left;
+  animation: bar-grow 400ms var(--ease);
+  transition: background-color 150ms var(--ease);
+}
+.bar-table tbody tr:hover .bar,
+.bar-table tbody tr:focus .bar { background: var(--brown); }
+.bar-value { font-weight: 600; white-space: nowrap; }
+
+@keyframes bar-grow { from { transform: scaleX(0); } }
+
+.chart-tip {
+  position: absolute;
+  z-index: 1;
+  padding: 8px 12px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: var(--radius);
+  max-width: min(340px, 100%);
+  font-size: 0.875rem;
+  pointer-events: none;
+}
+.chart-tip strong { display: block; font-size: 1rem; }
+
+.trend-chart svg { display: block; overflow: visible; }
+.trend-title { fill: var(--ink); font-size: 0.875rem; font-weight: 600; }
+.trend-tick { fill: var(--brown); font-size: 0.75rem; font-variant-numeric: tabular-nums; }
+.trend-axis { fill: var(--brown); font-size: 0.75rem; font-weight: 600; }
+.trend-value { fill: var(--ink); font-size: 0.875rem; font-weight: 600; }
+.trend-grid { stroke: color-mix(in srgb, var(--brown) 18%, transparent); stroke-width: 1; }
+.trend-line { fill: none; stroke: var(--brown); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.trend-line.is-partial { stroke-dasharray: 4 5; }
+.trend-dot { fill: var(--brown); stroke: var(--surface); stroke-width: 2; }
+.trend-dot.is-partial { fill: var(--surface); stroke: var(--brown); }
+.trend-dot.is-active { fill: var(--amber); stroke: var(--brown); }
+.trend-crosshair { stroke: var(--brown); stroke-width: 1; }
+.trend-hit { fill: transparent; outline: none; }
+
+.chart-original { max-width: 800px; margin-top: 8px; }
+.chart-original img { margin-top: 8px; border: 1px solid var(--line); border-radius: var(--radius); }
+
 /* ---------- Storyboard ---------- */
 
-.plan summary { display: inline-block; padding: 8px 0; color: var(--brown); font-weight: 700; cursor: pointer; }
-.plan summary:hover { color: var(--ink); }
+.plan summary,
+.chart-original summary { display: inline-block; padding: 8px 0; color: var(--brown); font-weight: 700; cursor: pointer; }
+.plan summary:hover,
+.chart-original summary:hover { color: var(--ink); }
 .plan[open] summary { margin-bottom: 16px; }
 
 .storyboard { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 0; padding: 0; list-style: none; }

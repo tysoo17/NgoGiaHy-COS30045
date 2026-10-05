@@ -121,8 +121,8 @@ function initCalculator() {
 
     const r = calculateEnergy(wattage, h, p);
     $('results-basis').textContent = selected
-      ? selected.brand + ' ' + selected.model + ' (' + selected.watts + ' W), ' + h + ' h/day at ' + p + ' c/kWh'
-      : wattage + ' W, ' + h + ' h/day at ' + p + ' c/kWh';
+      ? selected.brand + ' ' + selected.model + ' (' + selected.watts + ' W), ' + h + ' h/day at ' + p + ' cents/kWh'
+      : wattage + ' W, ' + h + ' h/day at ' + p + ' cents/kWh';
     $('kwh-day').textContent = kwhFormat.format(r.kwhDay) + ' kWh';
     $('kwh-month').textContent = kwhFormat.format(r.kwhMonth) + ' kWh';
     $('kwh-year').textContent = kwhFormat.format(r.kwhYear) + ' kWh';

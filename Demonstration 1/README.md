@@ -1,4 +1,4 @@
-# Appliance Energy Consumption Website
+# Electrofy
 
 A small three-page website about appliance energy consumption in the Australian market, built for
 COS30045 Data Visualisation (Demonstration 1). It includes an interactive TV energy calculator written in
