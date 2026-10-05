@@ -4,3 +4,7 @@
 .claude/
 .impeccable/
 .superpowers/
+
+# Raw Energy Rating register extracts (large; the site uses assets/data/tv-models.js)
+/Demonstration 1/dataset/
+/tv_2026_02_15.csv
